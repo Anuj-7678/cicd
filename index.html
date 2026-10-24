@@ -4,16 +4,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kunal | Portfolio</title>
+<title>Kunal | Personal Portfolio</title>
 
 <style>
 :root {
-    --bg: #09090f;
-    --card: #14141f;
+    --bg: #080811;
+    --card: #141422;
     --purple: #a78bfa;
     --pink: #f472b6;
-    --text: #f5f3ff;
-    --muted: #a1a1b5;
+    --white: #f5f3ff;
+    --muted: #a5a3b8;
 }
 
 * {
@@ -21,25 +21,55 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "Segoe UI", sans-serif;
-    scroll-behavior: smooth;
 }
+
+html { scroll-behavior: smooth; }
 
 body {
     background: var(--bg);
-    color: var(--text);
+    color: var(--white);
+    overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+
+#particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.orb {
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: .18;
+    animation: drift 12s ease-in-out infinite alternate;
+}
+
+.orb.one { background: #8b5cf6; top: 10%; left: -100px; }
+.orb.two { background: #ec4899; top: 55%; right: -130px; animation-delay: -5s; }
+
+@keyframes drift {
+    from { transform: translate(0, 0) scale(1); }
+    to { transform: translate(70px, -45px) scale(1.25); }
 }
 
 nav {
-    padding: 22px 8%;
+    position: sticky;
+    top: 0;
+    z-index: 10;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #272333;
-    background: #09090feF;
-    position: sticky;
-    top: 0;
-    z-index: 5;
-    backdrop-filter: blur(15px);
+    padding: 20px 8%;
+    background: #090911dc;
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid #ffffff10;
 }
 
 .logo {
@@ -48,263 +78,244 @@ nav {
     letter-spacing: -1px;
 }
 
-.logo span {
-    color: var(--purple);
+.logo span, .gradient {
+    background: linear-gradient(90deg, #a78bfa, #f472b6);
+    background-clip: text;
+    color: transparent;
 }
 
-nav a {
-    text-decoration: none;
+nav .links { display: flex; gap: 25px; }
+
+nav .links a {
     color: var(--muted);
-    margin-left: 25px;
     font-size: 14px;
+    transition: color .3s;
 }
 
-nav a:hover {
-    color: var(--purple);
-}
+nav .links a:hover { color: var(--purple); }
 
 .hero {
-    min-height: 85vh;
-    padding: 100px 10%;
+    min-height: 86vh;
+    padding: 90px 10%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    gap: 45px;
+    justify-content: space-between;
+    gap: 50px;
     flex-wrap: wrap;
-    background:
-        radial-gradient(ellipse at 80% 35%, #5b21b626, transparent 45%),
-        radial-gradient(ellipse at 15% 80%, #db277719, transparent 40%);
 }
 
-.hero-content {
-    max-width: 650px;
+.hero-text {
+    max-width: 620px;
+    animation: enterLeft 1s ease both;
 }
 
-.eyebrow {
+.pill {
     display: inline-block;
-    border: 1px solid #6d5b9c;
+    padding: 10px 15px;
+    border: 1px solid #a78bfa60;
+    border-radius: 50px;
     color: var(--purple);
-    border-radius: 30px;
-    padding: 9px 15px;
     font-size: 12px;
-    letter-spacing: 1px;
-    margin-bottom: 28px;
+    letter-spacing: 1.5px;
+    margin-bottom: 25px;
+    background: #a78bfa0c;
 }
 
 h1 {
-    font-size: clamp(48px, 8vw, 88px);
-    line-height: 1.03;
+    font-size: clamp(48px, 7vw, 83px);
     letter-spacing: -4px;
+    line-height: 1.06;
 }
 
-h1 span {
-    color: var(--purple);
-}
-
-.hero p {
+.hero-text > p {
+    max-width: 540px;
     color: var(--muted);
     line-height: 1.9;
     margin: 25px 0 30px;
-    max-width: 540px;
 }
 
 .btn {
     display: inline-block;
+    border: 0;
     padding: 13px 21px;
-    background: var(--purple);
+    background: linear-gradient(110deg, #a78bfa, #c084fc);
     color: #100b1b;
-    border-radius: 9px;
-    text-decoration: none;
-    font-weight: 700;
-    border: none;
+    border-radius: 10px;
+    font-weight: 750;
     cursor: pointer;
-    transition: .25s;
+    transition: transform .3s, box-shadow .3s;
 }
 
 .btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 30px #a78bfa45;
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px #a78bfa45;
 }
 
-.btn-secondary {
-    background: transparent;
-    color: var(--text);
-    border: 1px solid #454052;
+.btn.outline {
     margin-left: 10px;
+    background: transparent;
+    color: white;
+    border: 1px solid #ffffff25;
 }
 
 .profile {
     width: 290px;
     padding: 30px;
-    border-radius: 22px;
-    background: linear-gradient(145deg, #191625, #101018);
-    border: 1px solid #393044;
-    box-shadow: 0 20px 70px #0008;
+    border-radius: 25px;
     text-align: center;
+    background: linear-gradient(145deg, #1a192a, #10101a);
+    border: 1px solid #ffffff16;
+    box-shadow: 0 20px 70px #0007;
+    animation: enterRight 1s .15s ease both, float 5s 1.2s ease-in-out infinite;
 }
 
 .avatar {
-    width: 100px;
-    height: 100px;
-    margin: auto auto 20px;
-    border-radius: 28px;
-    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+    height: 105px;
+    width: 105px;
+    margin: 0 auto 20px;
+    border-radius: 30px;
     display: grid;
     place-items: center;
     font-size: 48px;
+    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+    box-shadow: 0 0 40px #8b5cf640;
 }
 
-.profile h2 {
-    margin-bottom: 10px;
-}
-
-.profile p {
-    color: var(--muted);
-    font-size: 14px;
-    margin: 8px 0;
-}
+.profile p { color: var(--muted); margin-top: 9px; font-size: 14px; }
 
 .package {
-    background: #201a30;
-    border: 1px solid #493568;
-    padding: 15px;
-    border-radius: 12px;
     margin-top: 22px;
+    padding: 16px;
+    border-radius: 14px;
+    background: #a78bfa12;
+    border: 1px solid #a78bfa40;
+    font-size: 13px;
 }
 
 .package strong {
     display: block;
     color: var(--purple);
-    font-size: 28px;
-    margin-top: 6px;
+    font-size: 29px;
+    margin-top: 5px;
 }
 
-section.content {
-    padding: 85px 10%;
-}
+section.content { padding: 85px 10%; }
 
-.section-label {
-    color: var(--purple);
-    text-transform: uppercase;
-    letter-spacing: 3px;
+.label {
+    color: var(--pink);
     font-size: 12px;
+    letter-spacing: 3px;
     margin-bottom: 14px;
 }
 
 .section-title {
-    font-size: clamp(30px, 5vw, 44px);
-    margin-bottom: 22px;
+    font-size: clamp(32px, 5vw, 46px);
+    letter-spacing: -1px;
+    margin-bottom: 20px;
 }
 
 .description {
-    color: var(--muted);
+    max-width: 760px;
     line-height: 1.9;
-    max-width: 750px;
+    color: var(--muted);
 }
 
 .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
+    gap: 22px;
     margin-top: 35px;
 }
 
 .card {
-    background: var(--card);
-    border: 1px solid #292536;
     padding: 28px;
-    border-radius: 16px;
-    transition: .3s;
+    border: 1px solid #ffffff12;
+    background: linear-gradient(145deg, #171725, #101019);
+    border-radius: 18px;
+    transition: transform .35s, border-color .35s, box-shadow .35s;
 }
 
 .card:hover {
-    transform: translateY(-6px);
-    border-color: #8b5cf6;
+    transform: translateY(-8px);
+    border-color: #a78bfa75;
+    box-shadow: 0 18px 40px #0004;
 }
 
-.card .icon {
-    font-size: 30px;
-}
-
-.card h3 {
-    margin: 17px 0 10px;
-}
-
-.card p {
-    color: var(--muted);
-    line-height: 1.7;
-    font-size: 14px;
-}
+.card .icon { font-size: 30px; }
+.card h3 { margin: 17px 0 10px; }
+.card p { color: var(--muted); font-size: 14px; line-height: 1.8; }
 
 .journey {
-    border-top: 1px solid #25212f;
-    border-bottom: 1px solid #25212f;
-    background: #0e0d15;
+    background: #ffffff04;
+    border-top: 1px solid #ffffff0d;
+    border-bottom: 1px solid #ffffff0d;
 }
 
-.contact {
-    text-align: center;
-}
-
-.contact .description {
-    margin: auto auto 28px;
-}
+.contact { text-align: center; }
+.contact .description { margin: auto auto 28px; }
 
 footer {
-    text-align: center;
-    color: #777387;
-    border-top: 1px solid #25212f;
     padding: 25px;
+    text-align: center;
     font-size: 13px;
+    color: #77758c;
+    border-top: 1px solid #ffffff12;
 }
 
-/* Private area is not shown on the normal page */
-#privatePage,
+/* Scroll reveal animation */
+.reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity .8s ease, transform .8s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes enterLeft {
+    from { opacity: 0; transform: translateX(-35px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes enterRight {
+    from { opacity: 0; transform: translateX(35px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes float {
+    0%, 100% { translate: 0 0; }
+    50% { translate: 0 -10px; }
+}
+
+/* Discreet private-access button */
+.lock {
+    position: fixed;
+    z-index: 20;
+    right: 20px;
+    bottom: 20px;
+    width: 43px;
+    height: 43px;
+    border-radius: 50%;
+    border: 1px solid #a78bfa50;
+    background: #171522;
+    color: var(--purple);
+    cursor: pointer;
+    opacity: .48;
+    transition: .3s;
+}
+
+.lock:hover { opacity: 1; transform: rotate(-8deg) scale(1.1); }
+
+/* Password popup */
 #loginModal {
     display: none;
-}
-
-#privatePage {
-    min-height: 100vh;
-    padding: 35px 8%;
-    background:
-        radial-gradient(ellipse at top right, #7c3aed25, transparent 40%),
-        var(--bg);
-}
-
-.private-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 70px;
-}
-
-.private-note {
-    background: #15121e;
-    border: 1px solid #393044;
-    padding: 25px;
-    border-radius: 15px;
-    margin-top: 20px;
-    color: var(--muted);
-    line-height: 1.8;
-}
-
-.private-title {
-    font-size: clamp(38px, 7vw, 68px);
-    margin: 20px 0;
-}
-
-.private-title span {
-    color: var(--pink);
-}
-
-#loginModal {
     position: fixed;
+    z-index: 50;
     inset: 0;
-    z-index: 10;
     background: #000c;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
     align-items: center;
     justify-content: center;
     padding: 20px;
@@ -312,90 +323,122 @@ footer {
 
 .login-card {
     width: 100%;
-    max-width: 390px;
-    background: #15131f;
-    border: 1px solid #51416c;
-    border-radius: 20px;
-    padding: 30px;
+    max-width: 380px;
+    background: #151421;
+    border: 1px solid #a78bfa60;
+    padding: 32px;
+    border-radius: 22px;
     text-align: center;
+    animation: popIn .3s ease both;
 }
 
-.login-card h2 {
-    margin: 15px 0 10px;
+@keyframes popIn {
+    from { opacity: 0; transform: scale(.92) translateY(15px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
 }
 
-.login-card p {
-    color: var(--muted);
-    font-size: 14px;
-    margin-bottom: 20px;
-}
+.login-card .big-lock { font-size: 40px; }
+.login-card h2 { margin: 14px 0 10px; }
+.login-card p { color: var(--muted); font-size: 14px; margin-bottom: 20px; }
 
 .login-card input {
     width: 100%;
     padding: 14px;
-    background: #09090f;
-    border: 1px solid #494054;
-    border-radius: 9px;
+    border: 1px solid #ffffff25;
+    border-radius: 10px;
     color: white;
-    margin-bottom: 15px;
+    background: #090911;
+    margin-bottom: 14px;
     outline: none;
 }
 
-.login-card input:focus {
-    border-color: var(--purple);
+.login-card input:focus { border-color: var(--purple); }
+.login-card .btn { width: 100%; }
+#errorMsg { color: #fda4af; margin-top: 14px; }
+
+#privatePage {
+    display: none;
+    min-height: 100vh;
+    padding: 35px 8% 80px;
+    background:
+        radial-gradient(ellipse at top right, #7c3aed25, transparent 45%),
+        var(--bg);
 }
 
-.login-card .btn {
-    width: 100%;
+.private-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 80px;
 }
 
-.error {
-    color: #fda4af !important;
-    margin-top: 15px;
+.private-title {
+    font-size: clamp(40px, 7vw, 72px);
+    margin: 20px 0;
 }
 
-.lock-trigger {
-    position: fixed;
-    bottom: 18px;
-    right: 18px;
-    width: 39px;
-    height: 39px;
-    border-radius: 50%;
-    background: #171522;
-    border: 1px solid #373044;
-    color: #a78bfa;
-    cursor: pointer;
-    opacity: .5;
-    z-index: 6;
-    transition: .2s;
+.private-title span { color: var(--pink); }
+
+.private-card {
+    max-width: 750px;
+    margin-top: 30px;
+    padding: 30px;
+    border-radius: 20px;
+    background: #171421;
+    border: 1px solid #f472b640;
 }
 
-.lock-trigger:hover {
-    opacity: 1;
-    transform: scale(1.08);
+.private-card h2 { margin-bottom: 16px; }
+.private-card p { color: var(--muted); line-height: 1.9; margin-top: 10px; }
+
+.heart {
+    display: inline-block;
+    animation: heartbeat 1.5s infinite;
 }
 
-@media(max-width: 650px) {
-    nav { padding: 20px 5%; }
-    nav a { margin-left: 10px; font-size: 12px; }
-    .hero { padding: 70px 7%; }
-    .hero-content { text-align: center; }
-    .hero p { margin-left: auto; margin-right: auto; }
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    15% { transform: scale(1.22); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.12); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+    }
+}
+
+@media(max-width:650px) {
+    nav { padding: 18px 5%; }
+    nav .links { gap: 12px; }
+    nav .links a { font-size: 12px; }
+    .hero { padding: 65px 7%; text-align: center; }
+    .hero-text > p { margin-left: auto; margin-right: auto; }
     h1 { letter-spacing: -2px; }
     .profile { margin: auto; }
     section.content { padding: 65px 7%; }
+    .private-nav { align-items: flex-start; }
+    .private-nav .btn { padding: 10px; font-size: 12px; }
 }
 </style>
 </head>
 
 <body>
 
-<!-- MAIN PORTFOLIO -->
-<div id="mainPage">
+<div id="particles">
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+</div>
 
+<div id="mainPage">
     <nav>
         <div class="logo">kunal<span>.</span></div>
-        <div>
+        <div class="links">
             <a href="#about">About</a>
             <a href="#interests">Interests</a>
             <a href="#journey">Journey</a>
@@ -403,20 +446,17 @@ footer {
     </nav>
 
     <header class="hero">
-        <div class="hero-content">
-            <div class="eyebrow">MECHANICAL ENGINEER · THAPAR UNIVERSITY</div>
-
-            <h1>Building ideas.<br>Creating <span>impact.</span></h1>
-
+        <div class="hero-text">
+            <div class="pill">MECHANICAL ENGINEER · THAPAR UNIVERSITY</div>
+            <h1>Building ideas.<br>Creating <span class="gradient">impact.</span></h1>
             <p>
                 Hey, I'm Kunal — a Mechanical Engineering graduate from
                 Thapar University, beginning my professional journey at
-                Accenture. I love solving problems, exploring technology,
-                and turning ambitious ideas into reality.
+                Accenture. Curious by nature, driven by challenges,
+                and always ready for what's next.
             </p>
-
-            <a href="#about" class="btn">Discover My Journey ↗</a>
-            <a href="#contact" class="btn btn-secondary">Let's Connect</a>
+            <a href="#about" class="btn">Explore My World ↗</a>
+            <a href="#contact" class="btn outline">Let's Connect</a>
         </div>
 
         <div class="profile">
@@ -424,7 +464,7 @@ footer {
             <h2>Kunal</h2>
             <p>Mechanical Engineering Graduate</p>
             <p>Thapar University</p>
-            <p>Accenture · Professional Journey</p>
+            <p>Accenture · Career Journey</p>
             <div class="package">
                 Annual package
                 <strong>₹12 LPA</strong>
@@ -432,11 +472,11 @@ footer {
         </div>
     </header>
 
-    <section class="content" id="about">
-        <div class="section-label">01 / ABOUT ME</div>
+    <section class="content reveal" id="about">
+        <div class="label">01 / ABOUT ME</div>
         <h2 class="section-title">Engineer by degree.<br>Innovator by mindset.</h2>
         <p class="description">
-            My engineering journey has shaped the way I think, approach
+            My engineering journey has shaped how I think, approach
             challenges, and solve problems. I'm interested in the
             intersection of engineering, business, and technology.
             I believe curiosity and consistent learning are the keys
@@ -444,15 +484,14 @@ footer {
         </p>
     </section>
 
-    <section class="content" id="interests">
-        <div class="section-label">02 / WHAT I EXPLORE</div>
+    <section class="content reveal" id="interests">
+        <div class="label">02 / WHAT I EXPLORE</div>
         <h2 class="section-title">Curiosity drives me.</h2>
-
         <div class="cards">
             <div class="card">
                 <div class="icon">⚙️</div>
                 <h3>Engineering</h3>
-                <p>Design thinking, mechanical systems, and practical problem-solving.</p>
+                <p>Mechanical systems, design thinking, and practical problem-solving.</p>
             </div>
             <div class="card">
                 <div class="icon">⌘</div>
@@ -462,137 +501,153 @@ footer {
             <div class="card">
                 <div class="icon">◈</div>
                 <h3>Problem Solving</h3>
-                <p>Breaking down complex challenges into thoughtful solutions.</p>
+                <p>Turning complex challenges into thoughtful solutions.</p>
             </div>
         </div>
     </section>
 
-    <section class="content journey" id="journey">
-        <div class="section-label">03 / THE JOURNEY</div>
+    <section class="content journey reveal" id="journey">
+        <div class="label">03 / THE JOURNEY</div>
         <h2 class="section-title">From campus to career.</h2>
-
         <div class="cards">
             <div class="card">
                 <div class="icon">🎓</div>
                 <h3>Thapar University</h3>
-                <p>Built a foundation in Mechanical Engineering and analytical thinking.</p>
+                <p>Building a foundation in Mechanical Engineering and analytical thinking.</p>
             </div>
             <div class="card">
                 <div class="icon">✦</div>
                 <h3>Accenture</h3>
-                <p>A new professional chapter, with opportunities to learn, collaborate, and grow.</p>
+                <p>A new chapter filled with opportunities to learn, collaborate, and grow.</p>
             </div>
         </div>
     </section>
 
-    <section class="content contact" id="contact">
-        <div class="section-label">04 / SAY HELLO</div>
-        <h2 class="section-title">Good things begin<br>with a conversation.</h2>
-        <p class="description">
-            Always open to connecting with curious minds and exploring new ideas.
-        </p>
+    <section class="content contact reveal" id="contact">
+        <div class="label">04 / SAY HELLO</div>
+        <h2 class="section-title">Let's make something<br><span class="gradient">meaningful.</span></h2>
+        <p class="description">Always open to meeting curious minds and exploring new ideas.</p>
         <a href="mailto:kunal@example.com" class="btn">Get in Touch ↗</a>
     </section>
 
-    <footer>© 2026 Kunal · Crafted with purpose.</footer>
+    <footer>© 2026 Kunal · Designed with purpose.</footer>
 </div>
 
-<!-- HIDDEN PRIVATE PAGE -->
+<!-- This page remains hidden until the correct password is entered -->
 <div id="privatePage">
-    <div class="private-header">
-        <div class="logo">private<span>.</span></div>
-        <button class="btn btn-secondary" onclick="showMain()">← Back to Portfolio</button>
+    <div class="private-nav">
+        <div class="logo">kunal<span>.</span> private</div>
+        <button class="btn outline" onclick="showMain()">← Back to Portfolio</button>
     </div>
 
-    <div class="section-label">PERSONAL SPACE · PRIVATE</div>
-    <h1 class="private-title">Manage with <span>Saloni.</span></h1>
+    <div class="label">PERSONAL SPACE · PRIVATE</div>
+    <h1 class="private-title">Kunal's <span>Personal Life.</span></h1>
     <p class="description">
-        A little corner away from the world. Just for the things that matter.
+        A little space for the moments and people that mean the most.
     </p>
 
-    <div class="private-note">
-        <h2 style="color:#f472b6; margin-bottom:12px;">🔒 Personal Space</h2>
+    <div class="private-card">
+        <div style="font-size:36px; margin-bottom:15px;">
+            💍 <span class="heart">❤️</span>
+        </div>
+        <div class="label">MARRIAGE & RELATIONSHIPS</div>
+        <h2>Meet Saloni Ajdhav</h2>
         <p>
-            Welcome to this private page. You can add personal notes,
-            plans, memories, or anything you want to keep here.
+            <strong style="color:#f9a8d4;">Wife's name:</strong>
+            Saloni Ajdhav
         </p>
-        <p style="margin-top:15px;">
-            ✨ This space is yours to customize.
+        <p>
+            This personal page celebrates an important part of Kunal's life.
+            Add marriage details, a wedding date, photos, and favourite
+            memories here when you are ready.
+        </p>
+        <p style="color:#f9a8d4; font-size:18px;">
+            Made with love <span class="heart">♥</span>
         </p>
     </div>
 </div>
 
-<!-- PASSWORD POPUP -->
+<!-- Password popup -->
 <div id="loginModal">
     <div class="login-card">
-        <div style="font-size:35px;">🔐</div>
+        <div class="big-lock">🔐</div>
         <h2>Private Access</h2>
         <p>This corner isn't for everyone.</p>
 
         <form onsubmit="unlockPage(event)">
             <input
-                type="password"
                 id="password"
-                placeholder="Enter the password"
+                type="password"
+                placeholder="Enter private password"
                 autocomplete="current-password"
                 required
             >
-            <button type="submit" class="btn">Unlock Private Page ↗</button>
+            <button class="btn" type="submit">Unlock Private Space ↗</button>
         </form>
 
-        <p id="errorMsg" class="error"></p>
+        <p id="errorMsg"></p>
 
         <button
             onclick="closeLogin()"
-            style="margin-top:15px; background:none; border:none; color:#aaa; cursor:pointer;"
+            style="background:none;border:none;color:#aaa;margin-top:12px;cursor:pointer;"
         >Cancel</button>
     </div>
 </div>
 
-<!-- Small, discreet lock icon; hidden page is not in normal navigation -->
-<button class="lock-trigger" onclick="openLogin()" title="Private access" aria-label="Open private access">♙</button>
+<button class="lock" onclick="openLogin()" title="Private access" aria-label="Open private access">🔒</button>
 
 <script>
-    // Demo password. Change this before testing.
-    const PRIVATE_PASSWORD = "saloni123";
+// Demo only: change the password before testing.
+const PRIVATE_PASSWORD = "saloni123";
 
-    function openLogin() {
-        document.getElementById("loginModal").style.display = "flex";
-        document.getElementById("password").value = "";
-        document.getElementById("errorMsg").textContent = "";
-        setTimeout(() => document.getElementById("password").focus(), 50);
+function openLogin() {
+    document.getElementById("loginModal").style.display = "flex";
+    document.getElementById("password").value = "";
+    document.getElementById("errorMsg").textContent = "";
+    setTimeout(() => document.getElementById("password").focus(), 50);
+}
+
+function closeLogin() {
+    document.getElementById("loginModal").style.display = "none";
+}
+
+function unlockPage(event) {
+    event.preventDefault();
+
+    const entered = document.getElementById("password").value;
+
+    if (entered === PRIVATE_PASSWORD) {
+        closeLogin();
+        document.getElementById("mainPage").style.display = "none";
+        document.getElementById("privatePage").style.display = "block";
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+        document.getElementById("errorMsg").textContent =
+            "Incorrect password. Please try again.";
     }
+}
 
-    function closeLogin() {
-        document.getElementById("loginModal").style.display = "none";
-    }
+function showMain() {
+    document.getElementById("privatePage").style.display = "none";
+    document.getElementById("mainPage").style.display = "block";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
 
-    function unlockPage(event) {
-        event.preventDefault();
-
-        const enteredPassword = document.getElementById("password").value;
-
-        if (enteredPassword === PRIVATE_PASSWORD) {
-            closeLogin();
-            document.getElementById("mainPage").style.display = "none";
-            document.getElementById("privatePage").style.display = "block";
-            window.scrollTo(0, 0);
-        } else {
-            document.getElementById("errorMsg").textContent =
-                "Incorrect password. This space remains locked.";
+// Reveal sections when they enter the screen.
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
         }
-    }
-
-    function showMain() {
-        document.getElementById("privatePage").style.display = "none";
-        document.getElementById("mainPage").style.display = "block";
-        window.scrollTo(0, 0);
-    }
-
-    // Escape closes the login popup.
-    document.addEventListener("keydown", function(event) {
-        if (event.key === "Escape") closeLogin();
     });
+}, { threshold: 0.12 });
+
+document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+document.addEventListener("keydown", event => {
+    if (event.key === "Escape") closeLogin();
+});
 </script>
 
 </body>
